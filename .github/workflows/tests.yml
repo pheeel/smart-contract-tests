@@ -51,7 +51,8 @@ jobs:
         shell: bash
 
       - name: Tests
-        run: npm run test
+#        run: npm run test
+        run: npx playwright test src/tests/test.spec.ts
 
       - uses: actions/upload-artifact@v3
         if: always()

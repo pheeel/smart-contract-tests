@@ -35,7 +35,7 @@ const runMode = {
     baseURL,
     actionTimeout: 1000 * 10,
     browserName: browser,
-    headless: false,
+    headless: true,
     viewport,
     locale: 'en-GB',
     ignoreHTTPSErrors: false,
