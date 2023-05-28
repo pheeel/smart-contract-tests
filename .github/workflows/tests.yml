@@ -50,9 +50,18 @@ jobs:
         run: npm install
         shell: bash
 
+      - name: Install linux deps
+        run: |
+          sudo apt-get install --no-install-recommends -y \
+          fluxbox \
+          xvfb
+
       - name: Tests
 #        run: npm run test
-        run: npx playwright test src/tests/test.spec.ts
+        run: |
+          Xvfb :0 -screen 0 1024x768x24 -listen tcp -ac &
+          fluxbox &
+          npx playwright test src/tests/test.spec.ts
 
       - uses: actions/upload-artifact@v3
         if: always()

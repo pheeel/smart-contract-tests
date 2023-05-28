@@ -16,7 +16,7 @@ const baseURL = 'http://localhost:3000/'
 const defaultGenerals: PlaywrightTestConfig = {
   workers: Number(maxWorkers),
   retries: Number(retries),
-  timeout: 500000,
+  timeout: 100000,
   reporter: [
     ['list'],
     ['html', { open: 'never' }],
