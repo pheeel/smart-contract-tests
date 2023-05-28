@@ -87,7 +87,7 @@ const test = baseTest.extend<TestFixtures>({
   },
 
   page: async ({ baseURL, page }, use) => {
-    // await page.goto(baseURL);
+    await page.goto(baseURL);
     await use(page);
   },
 
