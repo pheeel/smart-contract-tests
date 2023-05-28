@@ -31,17 +31,13 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ${{ inputs.frontend_image }}
-          name: frontend
-          ports: 3000:3000
-          detach: true
+          options: -p 3000:3000
 
       - name: Run backend
         uses: addnab/docker-run-action@v3
         with:
           image: ${{ inputs.backend_image }}
-          name: backend
-          ports: 4000:4000
-          detach: true
+          options: -p 4000:4000
 
       - name: Setup
         uses: ./.github/actions/setup
