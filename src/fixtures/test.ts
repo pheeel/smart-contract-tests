@@ -23,7 +23,7 @@ type TestFixtures = {
 };
 
 const test = baseTest.extend<TestFixtures>({
-  context: async ({ metamaskSetup }, use) => {
+  context: async ({}, use) => {
     // required for synpress
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     global.expect = expect;
