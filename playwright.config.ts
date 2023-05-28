@@ -29,9 +29,9 @@ const runMode = {
   ...defaultGenerals,
   use: {
     devtools: true,
-    trace: 'on-first-retry',
-    video: 'on-first-retry',
-    screenshot: 'only-on-failure',
+    trace: 'on',
+    video: 'on',
+    screenshot: 'on',
     baseURL,
     actionTimeout: 1000 * 10,
     browserName: browser,
