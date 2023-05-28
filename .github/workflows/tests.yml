@@ -31,13 +31,13 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ${{ inputs.frontend_image }}
-          args: -p 3000:3000
+          args: -it -p 3000:3000
 
       - name: Run backend
         uses: addnab/docker-run-action@v3
         with:
           image: ${{ inputs.backend_image }}
-          args: -p 4000:4000
+          args: -it -p 4000:4000
 
       - name: Setup
         uses: ./.github/actions/setup
