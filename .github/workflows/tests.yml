@@ -1,4 +1,4 @@
-name: E2E tests
+name: Tests
 
 on:
   workflow_dispatch:
@@ -27,16 +27,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Docker
-        uses: docker/setup-docker@v1
-
       - name: Run frontend
-        run: |
-          docker run -d -p 3000:3000 --name ${{ inputs.frontend_image }}
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ${{ inputs.frontend_image }}
+          name: frontend
+          ports: 3000:3000
+          detach: true
 
       - name: Run backend
-        run: |
-          docker run -d -p 4000:4000 --name ${{ inputs.backend_image }}
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ${{ inputs.backend_image }}
+          name: backend
+          ports: 4000:4000
+          detach: true
 
       - name: Setup
         uses: ./.github/actions/setup
