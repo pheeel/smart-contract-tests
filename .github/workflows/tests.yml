@@ -62,6 +62,8 @@ jobs:
           Xvfb :0 -screen 0 1024x768x24 -listen tcp -ac &
           fluxbox &
           npx playwright test src/tests/test.spec.ts
+        env:
+          DISPLAY: :0.0
 
       - uses: actions/upload-artifact@v3
         if: always()
