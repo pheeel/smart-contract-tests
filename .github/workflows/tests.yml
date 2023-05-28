@@ -61,7 +61,7 @@ jobs:
         run: |
           Xvfb :0 -screen 0 1024x768x24 -listen tcp -ac &
           fluxbox &
-          npx playwright test src/tests/test.spec.ts
+          npx playwright test src/tests/main.spec.ts
         env:
           DISPLAY: :0.0
 
