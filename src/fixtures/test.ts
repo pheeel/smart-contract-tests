@@ -22,7 +22,7 @@ type TestFixtures = {
 };
 
 const test = baseTest.extend<TestFixtures>({
-  context: [async ({ }, use) => {
+  context: async ({}, use) => {
     // required for synpress
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     global.expect = expect;
@@ -30,7 +30,7 @@ const test = baseTest.extend<TestFixtures>({
     const metamaskPath = await prepareMetamask(
       process.env.METAMASK_VERSION || '10.25.0',
     );
-      // prepare browser args
+    // prepare browser args
     const browserArgs = [
       `--disable-extensions-except=${metamaskPath}`,
       `--load-extension=${metamaskPath}`,
@@ -47,7 +47,7 @@ const test = baseTest.extend<TestFixtures>({
       headless: false,
       args: browserArgs,
     });
-      // wait for metamask
+    // wait for metamask
     await context.pages()[0].waitForTimeout(3000);
     // setup metamask
     await initialSetup(chromium, {
@@ -57,8 +57,7 @@ const test = baseTest.extend<TestFixtures>({
     });
     await use(context);
     await context.close();
-  }
-  , { scope: 'test' }],
+  },
 
   metamask: async ({}: never, use: (arg0: never) => never) => {
     await use(metamask);
