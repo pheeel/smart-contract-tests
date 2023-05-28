@@ -28,8 +28,8 @@ test.describe.serial('App', () => {
     const parsedDeployedCollectionData = await eventsList.parseEventElement(lastEventElement!);
     mintNftTestData.collectionAddress = parsedDeployedCollectionData.collectionAddress!;
 
-    expect(parsedDeployedCollectionData).toEqual({
-      collectionAddress: expect.any(String),
+    await expect(parsedDeployedCollectionData).toEqual({
+      collectionAddress: await expect.any(String),
       name: deployCollectionTestData.collectionName,
       symbol: deployCollectionTestData.collectionSymbol,
     });
@@ -49,8 +49,8 @@ test.describe.serial('App', () => {
     const lastEventElement = await eventsList.getLastEventElement();
     const parsedEventData = await eventsList.parseEventElement(lastEventElement!);
 
-    expect(parsedEventData).toEqual({
-      collectionAddress: expect.any(String),
+    await expect(parsedEventData).toEqual({
+      collectionAddress: await expect.any(String),
       name: deployCollectionTestData.collectionName,
       symbol: deployCollectionTestData.collectionSymbol,
     });
