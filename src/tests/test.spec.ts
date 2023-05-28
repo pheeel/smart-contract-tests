@@ -1,7 +1,7 @@
 import test, { expect } from 'fixtures';
 
 test.describe.serial('App', () => {
-  test.use({ metamaskSetup: false });
+  test.use({ metamaskSetup: true });
   test('Test CI', async ({ page }) => {
     await page.goto('https://google.com', { waitUntil: 'domcontentloaded' });
     console.log(page.url());
