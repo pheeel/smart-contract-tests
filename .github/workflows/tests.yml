@@ -1,0 +1,53 @@
+name: E2E tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      frontend_image:
+        description: 'Frontend image'
+        default: 'evercoinx/faraway:nft-collection-deployer-frontend'
+        required: true
+      backend_image:
+        description: 'Backend image'
+        default: 'evercoinx/faraway:nft-collection-deployer-backend'
+        required: true
+      retries:
+        description: 'Retries - How many times to rerun a failed test'
+        default: '2'
+        required: false
+
+jobs:
+  e2e-tests:
+    name: Smart Contract Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      RETRIES: ${{ inputs.retries }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-docker@v1
+
+      - name: Run frontend
+        run: |
+          docker run -d -p 3000:3000 --name ${{ inputs.frontend_image }}
+
+      - name: Run backend
+        run: |
+          docker run -d -p 4000:4000 --name ${{ inputs.backend_image }}
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Tests
+        run: npm run test
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+

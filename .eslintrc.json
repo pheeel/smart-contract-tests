@@ -1,0 +1,48 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:playwright/playwright-test",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": ["@typescript-eslint", "import", "playwright"],
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": ["playwright.config.ts", "node_modules/"],
+  "rules": {
+    "@typescript-eslint/no-unsafe-call": 0,
+    "@typescript-eslint/no-unsafe-member-access": 0,
+    "@typescript-eslint/no-misused-promises": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/restrict-template-expressions": ["warn", {
+      "allowNumber": true,
+      "allowBoolean": true,
+      "allowAny": true,
+      "allowNullish": true
+    }],
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "class-methods-use-this": 0,
+    "no-await-in-loop": 0,
+    "no-loop-func": 0,
+    "max-len": [2, {
+      "code": 140,
+      "comments": 140,
+      "tabWidth": 2,
+      "ignoreUrls": true
+    }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "playwright/no-element-handle": 0,
+    "playwright/no-wait-for-timeout": 0,
+    "playwright/no-skipped-test": 0
+  }
+}
