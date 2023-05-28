@@ -27,17 +27,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run frontend
-        uses: addnab/docker-run-action@v3
-        with:
-          image: ${{ inputs.frontend_image }}
-          args: -it -p 3000:3000
+#      - name: Run frontend
+#        uses: addnab/docker-run-action@v3
+#        with:
+#          image: ${{ inputs.frontend_image }}
+#          args: -it -p 3000:3000
+#
+#      - name: Run backend
+#        uses: addnab/docker-run-action@v3
+#        with:
+#          image: ${{ inputs.backend_image }}
+#          args: -it -p 4000:4000
 
-      - name: Run backend
-        uses: addnab/docker-run-action@v3
+      - name: Run frontend
+        uses: docker://ghcr.io/docker/build-push-action:2.6.1
         with:
-          image: ${{ inputs.backend_image }}
-          args: -it -p 4000:4000
+          context: ./
+          run: |
+            docker run -d -p 3000:3000 --name ${{ inputs.frontend_image }}
+
+      - name: Run frontend
+        uses: docker://ghcr.io/docker/build-push-action:2.6.1
+        with:
+          context: ./
+          run: |
+            docker run -d -p 4000:4000 --name ${{ inputs.backend_image }}
 
       - name: Use Node.js
         uses: actions/setup-node@v3
