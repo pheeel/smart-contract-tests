@@ -39,8 +39,16 @@ jobs:
           image: ${{ inputs.backend_image }}
           args: -it -p 4000:4000
 
-      - name: Setup
-        uses: ./.github/actions/setup
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+
+      - name: Install dependencies
+        run: npm install
+        shell: bash
 
       - name: Tests
         run: npm run test
