@@ -51,13 +51,13 @@ const test = baseTest.extend<TestFixtures>({
       // wait for metamask
     await context.pages()[0].waitForTimeout(3000);
     await context.pages()[0].close();
-    await context.pages()[1].close();
     // setup metamask
     await initialSetup(chromium, {
       secretWordsOrPrivateKey: 'machine plastic wood coin dose put police coast door poverty fatal until',
       password: '12345678',
       enableAdvancedSettings: true,
     });
+    await context.pages()[0].close();
     await use(context);
     await context.close();
   },
