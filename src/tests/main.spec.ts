@@ -14,9 +14,10 @@ const mintNftTestData = {
 const baseURL = 'http://localhost:3000';
 
 test.describe.serial('App', () => {
-  test('Deploy Collection', async ({ page, deployCollectionForm, eventsList, metamask }) => {
-    await page.goto(baseURL);
-    await page.reload();
+  test('Deploy Collection', async ({ context, deployCollectionForm, eventsList, metamask }) => {
+    // await page.goto(baseURL);
+    // await page.reload();
+    await context.pages()[context.pages().length - 1].goto(baseURL);
     await metamask.acceptAccess();
     await deployCollectionForm.fillTheForm(
       deployCollectionTestData.collectionName,
@@ -38,9 +39,10 @@ test.describe.serial('App', () => {
     });
   });
 
-  test('Mint NFT', async ({ page, mintNftForm, eventsList, metamask }) => {
-    await page.goto(baseURL);
-    await page.reload();
+  test('Mint NFT', async ({ context, mintNftForm, eventsList, metamask }) => {
+    // await page.goto(baseURL);
+    // await page.reload();
+    await context.pages()[context.pages().length - 1].goto(baseURL);
     await metamask.acceptAccess();
     await mintNftForm.fillTheForm(
       mintNftTestData.collectionAddress,
