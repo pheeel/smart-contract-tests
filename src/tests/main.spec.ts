@@ -9,7 +9,7 @@ const testWalletAddress = '0x7E87B06eca3B24DEA74fE87e7F2715aE395dF615';
 const mintNftTestData = {
   collectionAddress: '',
   recipientAddress: testWalletAddress,
-  tokenId: 1,
+  tokenId: '1',
 };
 
 test.describe.serial('App', () => {
@@ -50,9 +50,10 @@ test.describe.serial('App', () => {
     const parsedEventData = await eventsList.parseEventElement(lastEventElement!);
 
     await expect(parsedEventData).toEqual({
-      collectionAddress: await expect.any(String),
-      name: deployCollectionTestData.collectionName,
-      symbol: deployCollectionTestData.collectionSymbol,
+      collectionAddress: mintNftTestData.collectionAddress,
+      recipientAddress: mintNftTestData.recipientAddress,
+      tokenId: mintNftTestData.tokenId,
+      tokenURI: `collection_uri${mintNftTestData.tokenId}`,
     });
   });
 });

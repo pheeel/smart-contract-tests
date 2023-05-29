@@ -15,7 +15,7 @@ export default class MintNftForm {
     this.page = page;
   }
 
-  async fillTheForm(collectionAddress: string, recipientAddress: string, tokenId: number): Promise<void> {
+  async fillTheForm(collectionAddress: string, recipientAddress: string, tokenId: string): Promise<void> {
     await this.page.fill(selectors.inputs.collectionAddress, collectionAddress);
     await this.page.fill(selectors.inputs.recipientAddress, recipientAddress);
     await this.page.fill(selectors.inputs.tokenId, tokenId.toString());
