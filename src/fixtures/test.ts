@@ -50,6 +50,8 @@ const test = baseTest.extend<TestFixtures>({
     });
       // wait for metamask
     await context.pages()[0].waitForTimeout(3000);
+    await context.pages()[0].close();
+    await context.pages()[1].close();
     // setup metamask
     await initialSetup(chromium, {
       secretWordsOrPrivateKey: 'machine plastic wood coin dose put police coast door poverty fatal until',
@@ -74,11 +76,6 @@ const test = baseTest.extend<TestFixtures>({
 
   mintNftForm: async ({ page }, use) => {
     await use(new MintNftForm(page));
-  },
-
-  page: async ({ baseURL, page }, use) => {
-    await page.goto(baseURL);
-    await use(page);
   },
 
   helpers: async ({ page }, use) => {
