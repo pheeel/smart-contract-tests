@@ -57,7 +57,6 @@ const test = baseTest.extend<TestFixtures>({
       password: '12345678',
       enableAdvancedSettings: true,
     });
-    await context.pages()[0].close();
     await use(context);
     await context.close();
   },
