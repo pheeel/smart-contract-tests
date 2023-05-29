@@ -15,7 +15,7 @@ type TestFixtures = {
 
   // Context
   context: BrowserContext;
-  // metamask: typeof metamask;
+  metamask: typeof metamask;
   metamaskSetup: boolean;
 
   // Utils
@@ -61,9 +61,9 @@ const test = baseTest.extend<TestFixtures>({
     await context.close();
   },
 
-  // metamask: async ({}: never, use: (arg0: never) => never) => {
-  //   await use(metamask);
-  // },
+  metamask: async ({}: never, use: (arg0: never) => never) => {
+    await use(metamask);
+  },
 
   deployCollectionForm: async ({ page }, use) => {
     await use(new DeployCollectionForm(page));
@@ -79,6 +79,11 @@ const test = baseTest.extend<TestFixtures>({
 
   helpers: async ({ page }, use) => {
     await use(new Helpers(page));
+  },
+
+  page: async ({ baseURL, page }, use) => {
+    await page.goto(baseURL);
+    await use(page);
   },
 });
 

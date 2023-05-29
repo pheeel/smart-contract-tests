@@ -54,11 +54,10 @@ jobs:
           xvfb
 
       - name: Tests
-#        run: npm run test
         run: |
           Xvfb :0 -screen 0 1024x768x24 -listen tcp -ac &
           fluxbox &
-          npx playwright test src/tests/main.spec.ts
+          npm run test
         env:
           DISPLAY: :0.0
 
